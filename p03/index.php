@@ -10,12 +10,16 @@
 
 <body>
     <h1>Array / Array Functions</h1>
+    <a href="homework.php">
+        <button>Homework</button>
+    </a>
     <?php
     // --------------------------------------
     // 0. Single dimension indexed array
 
     $my_arr1 = array("A", "B", "C");  // initialization
     $my_arr2 = [0, 1, 2];             // initialization
+    print("<br><br>");
     print($my_arr1[2] . "<br>");
     print_r($my_arr1); //print_r išpsausdina array vidurius
     print("<br>");

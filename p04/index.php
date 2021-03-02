@@ -10,12 +10,16 @@
 
 <body>
     <h1>Arrays w/ loops. Foreach.</h1>
+    <a href="homework.php">
+        <button>Homework</button>
+    </a>
     <?php
     //-----------------------
     // VIENMATIS MASYVAS
     //-----------------------
     $indexed_arr = ["Mindaugas", "Jonas", "Antanas", "Mantas", "Antanas"];
 
+    print("<br><br>");
     print(count($indexed_arr) . '<br>');
     // sizeof — Alias of count()
     // https://stackoverflow.com/a/51962583 - slower because it's an alias
