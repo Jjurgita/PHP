@@ -1,3 +1,7 @@
+<?php
+
+declare(strict_types=1); ?>
+<!-- tipu deklaravimas example 7 -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +14,9 @@
 
 <body>
     <h1>Functions</h1>
+    <a href="homework.php">
+        <button>Homework</button>
+    </a>
     <?php
     // 0. Function declaration (w/ default parameters)
     function htmlLinePrinter($v1 = "Foo", $v2 = "Bar")
@@ -23,6 +30,7 @@
     // }
 
     // 0. Function call 
+    print("<br><br>");
     htmlLinePrinter("ABC", "XYZ");
     htmlLinePrinter();
     htmlLinePrinter("ABC"); // positional binding
@@ -75,23 +83,23 @@
 
 
     // 6. Passing by reference and by value (copy)
-    // ... let us compare two functions
-    function f1($x)
-    {
-        print('Value of $x inside the function: ' . $x . '<br>');
-        return ++$x;
-    }
+    // ... let us compare two functions: by copy  ir by reference
+    // function f($x) // by copy
+    // {
+    //     print('Value of $x inside the function: ' . $x . '<br>');
+    //     return ++$x;
+    // }
 
-    function f2(&$x)
+    function f(&$x) // & simbolis - by reference (naudingas didelėms duomenų struktūroms)
     {
         print('Value of $x inside the function: ' . $x . '<br>');
         return ++$x;
     }
 
     $var = 55;
-    print(f1($var)); // what the function returns
+    print(f($var)); // what the function returns
     print('<br>');
-    print($var); // orginal - did it change
+    print($var); // orginal - did it change? by copy būdu $var išlieka nepakitęs (55), by reference - pakis reikšmė į 56
     print("<br><br>");
 
     // 7. Type declarations
@@ -100,18 +108,19 @@
         return $a + $b;
     }
 
-    // echo '<br>', addNumbers(5, "5 days");
+    // echo '<br>', addNumbers(5, "5 days"); //neveiks, nes turi b8ti int
+
     echo '<br>', addNumbers1(5, 5), '<br>';
     // what would happen if we were to remove type hints and call the previous function?
     // function addNumbers1($a, $b) {
     //   return $a + $b;
     // }
+    print("<br><br>");
 
-    // print('<br>-----------------------------------<br>');
-
-    // // include 'helper_functions.php'; // will throw warning if the file is missing 
-    // require 'helper_functions.php'; // will throw error if the file is missing
-    // print(multiply([6, 6, 2]));
+    // Funkcijos pakvietimas iš kito failo
+    // include 'lib.php'; // will throw warning if the file is missing 
+    require 'lib.php'; // will throw error if the file is missing
+    print(multiply([6, 6, 2]));
     ?>
 </body>
 
