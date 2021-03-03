@@ -11,6 +11,16 @@ if (!isset($_COOKIE["name"]) && !isset($_COOKIE["age"])) {
 // delete cookies ištrinant jų reikšmę
 setcookie("name", "", time() - 60, "/", "", 0);
 
+/*  HOMEWORK  */
+// Parašykite aplikaciją, kuri skaičiuoja kiek kartų vartojas pasiekė svetainę (taip kaip darėme su sesijomis), bet nenaudojant sesijų, o naudojat vien sausainiukus.
+if (!isset($_COOKIE["kartai"])) {
+    $kartai = 1;
+} else {
+    $kartai = $_COOKIE["kartai"] + 1;
+}
+setcookie("kartai", $kartai, time() + 60);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +52,11 @@ setcookie("name", "", time() - 60, "/", "", 0);
 
     // delete
     echo "<br>- Trynimas yra tiesiog laiko praeityje nustatymas. Taigi modifikuosime jau turimą sausainiuką (konkrečiai - jo laiką).";
+
+    /*  HOMEWORK  */
+    print('<br><br>HOMEWORK:<br>');
+    print('How many times a user has reached the site? ');
+    print("<br><div>" . $kartai . "</div>");
 
     ?>
 </body>
