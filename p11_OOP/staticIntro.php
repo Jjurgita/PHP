@@ -114,6 +114,31 @@
     // $o->f1();
 
     ?>
+
+    <div></div>
+
+    <?php
+    class Calculator
+    {
+        public static function add($i, $j)
+        {
+            return $i + $j;
+        }
+    }
+    print Calculator::add(5, 5);
+
+    class Person
+    {
+        public $name;
+        function __construct($name)
+        {
+            $this->name = $name;
+        }
+    }
+    $p1 = new Person("Kazys");
+    $p2 = new Person("Rimantėlis");
+
+    ?>
 </body>
 
 </html>
