@@ -11,90 +11,182 @@
 <body>
     <?php
     /*  Enkasuliacija/Inkapsuliacija (encapsulation)  */
-    class Person
+    // class Person2
+    // {
+    //     public $age = 1888;
+    // }
+    // class Person1
+    // {
+    //     private $age;
+    //     public function __construct($age)
+    //     {
+    //         $this->age = $age;
+    //     }
+    //     public function setAge($age)
+    //     {
+    //         $this->age = $age;
+    //     }
+    //     public function getAge()
+    //     {
+    //         return $this->age;
+    //     }
+    //     function __toString()
+    //     {
+    //         return strval($this->age);
+    //     }
+    // }
+    // $person = new Person1(-1);
+    // print($person);
+
+    // // su setteriu galime užtikrinti duomenų validumą
+    // // ... ar netuščias stringas, ar metai 'logiški', ar stringas nėra kažkoks neleistinas
+    // if (!($age < 0 or $age > 125)) {
+    //     $this->age = $age;
+    // } else {
+    //     print("Age must be between 0 and 125");
+    // }
+
+    /* Paveldimumas (inheritance)  */
+    // class Person
+    // {
+    //     private $firstname;
+    //     private $lastname;
+
+    //     public function __construct($fn, $ln)
+    //     {
+    //         $this->firstname = $fn;
+    //         $this->lastname = $ln;
+    //     }
+    //     public function getFirstname()
+    //     {
+    //         return $this->firstname;
+    //     }
+    //     public function getLastname()
+    //     {
+    //         return $this->lastname;
+    //     }
+    // }
+    // class Employee extends Person
+    // {
+    //     private $badgeId;
+
+    //     public function __construct($fn, $ln, $bid)
+    //     {
+    //         parent::__construct($fn, $ln);
+    //         $this->badgeId = $bid;
+    //     }
+    //     public function getBadgeId()
+    //     {
+    //         return $this->badgeId;
+    //     }
+    // }
+    // // $p1 = new Employee("Jurgita", "Kat");
+    // $p1 = new Employee("Jurgita", "Kat", 1111);
+    // // print($p1->getFirstname());
+    // echo $p1->getLastname();
+    // echo $p1->getBadgeId();
+
+    /*  Polimorfizmas  */
+
+    // class Person
+    // {
+    //     private $firstname;
+    //     private $lastname;
+    //     public function __construct($fn, $ln)
+    //     {
+    //         $this->firstname = $fn;
+    //         $this->lastname = $ln;
+    //     }
+    //     public function getFirstname()
+    //     {
+    //         return $this->firstname;
+    //     }
+    //     public function getLastname()
+    //     {
+    //         return $this->lastname;
+    //     }
+    // }
+    // class Employee extends Person
+    // {
+    //     function someFun()
+    //     {
+    //         print("ABC");
+    //     }
+    // }
+    // $people = array(
+    //     new Employee("Jurgita", "Kat"), new Person("Jonas", "Jonaitis"),
+    //     new Person("Petras", "Petraitis")
+    // );
+    // foreach ($people as $person) {
+    //     print($person->getFirstname() . ' ' . $person->getLastname() . "\n");
+    //     // Uncaught Error: Call to undefined method Person::someFun()
+    //     // print($person->getFirstname() . ' ' . $person->getLastname() . ' ' . $person->someFun() . "\n");
+    // }
+
+    // class X
+    // {
+    //     function getFirstname()
+    //     {
+    //         echo ">>>";
+    //     }
+    // }
+    // $x = new X();
+    // print("-----------------" . PHP_EOL);
+
+    // function poly(Person $p)
+    // {
+    //     print($p->getFirstname() . PHP_EOL);
+    // }
+    // poly($people[0]); // Employee
+    // poly($people[1]); // Person
+    // // poly($x); // X Uncaught TypeError: Argument 1 passed to poly() must be an instance of Person, instance of X given print("-----------------" . PHP_EOL);
+
+    /*  Kompozicija */
+
+    class Car
     {
-        public $age = 1888;
+        private $engine;
+        // no dependency injection - Car class creates it's dependency i.e. engine 
+        // ... this is not a recommended way to initialize objects / structure the app 
+        // function __construct() {
+        //     $this->engine = new Engine();
+        // }
+
+        // depency injection : constructor injection 
+        function __construct(Engine $e)
+        {
+            $this->engine = $e;
+        }
+
+
+        // depency injection : setter injection 
+        function setEngine(Engine $e)
+        {
+            $this->engine = $e;
+        }
+
+        function getEngine()
+        {
+            return $this->engine;
+        }
     }
-    class Person1
+    class Engine
     {
-        private $age;
-        public function __construct($age)
+        private $maker = "BMW";
+
+        function __construct()
         {
-            $this->age = $age;
-        }
-        public function setAge($age)
-        {
-            $this->age = $age;
-        }
-        public function getAge()
-        {
-            return $this->age;
+            print("Engine is ON!");
         }
         function __toString()
         {
-            return strval($this->age);
+            return "This is an awesome engine by " . $this->maker;
         }
     }
-    $person = new Person1(-1);
-    print($person);
-
-    // su setteriu galime užtikrinti duomenų validumą
-    // ... ar netuščias stringas, ar metai 'logiški', ar stringas nėra kažkoks neleistinas
-    if (!($age < 0 or $age > 125)) {
-        $this->age = $age;
-    } else {
-        print("Age must be between 0 and 125");
-    }
-    ?>
-    <div></div>
-    <?php
-    /* Paveldimumas (inheritence)  */
-    class Person2
-    {
-        private $firstname;
-        private $lastname;
-
-        public function __construct($fn, $ln)
-        {
-            $this->firstname = $fn;
-            $this->lastname = $ln;
-        }
-
-        public function getFirstname()
-        {
-            return $this->firstname;
-        }
-
-        public function getLastname()
-        {
-            return $this->lastname;
-        }
-    }
-
-    class Employee extends Person2
-    {
-        private $badgeId;
-
-        public function __construct($fn, $ln, $bi)
-        {
-            parent::__construct($fn, $ln); // super();
-            $this->firstname = $fn;
-            $this->lastname = $ln;
-            $this->badgeId = $bi;
-        }
-        public function getBadgeId()
-        {
-            return $this->badgeId;
-        }
-    }
-
-    $p1 = new Employee("Mindaugas", "Bern", "0551651");
-    // echo $p1->getFirstname() . PHP_EOL;
-    // echo $p1->getBadgeId() . PHP_EOL;
-
-    // $p1 = new Person2("Jurgita", "Kat.", "0551651");
-    print($p1->getFirstname());
-    // echo $p1->getBadgeId() . PHP_EOL; // Uncaught Error: Call to undefined method Person::getBadgeId()
+    $engine = new Engine();
+    $car = new Car($engine);
+    $car2 = new Car(new Engine());
+    print($car->getEngine());
 
 
 
